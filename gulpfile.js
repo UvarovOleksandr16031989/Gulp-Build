@@ -32,34 +32,37 @@ gulp.task('server', function() {
 
     gulp.watch(['./**/*.html']).on('change', browserSync.reload);
     gulp.watch('./js/**/*.js').on('change', browserSync.reload);
+    gulp.watch('./scripts/**/*.js').on('change', browserSync.reload);
+
 
     gulp.watch([
         './templates/**/*.html',
         './pages/**/*.html'
     ], ['fileinclude']);
 
+    gulp.watch([
+        './scripts/**/*.js',
+        './js/**/*.js'
+    ], ['babel']);
+
     gulp.watch('./sass/**/*', ['sass']);
+    gulp.watch('./scripts/**/*', ['import']);
 });
 
 
 
 // импорт js
-gulp.task('importJs', function() {
-    gulp.src('./scripts/index.js')
+gulp.task('import', function() {
+     return gulp.src('./scripts/index.js')
         .pipe(jsImport({hideConsole: true}))
         .pipe(gulp.dest('js'));
 });
 
-//сначала импортируем JS файлы потом запускаем сервер
-gulp.task('import',['default'], function() {
-     gulp.src('./scripts/index.js')
-        .pipe(jsImport({hideConsole: true}))
-        .pipe(gulp.dest('js'));
-});
+
 
 // babel
-gulp.task('babel',function() {
-    return gulp.src('./js/**/*.js')
+gulp.task('babel',['import'],function() {
+  return gulp.src('./js/**/index.js')
         .pipe(babel({
             presets: ['@babel/env']
         }))
@@ -165,7 +168,7 @@ gulp.task('deploy', function() {
 // sass - для компіляції sass в css, тому що браузер 
 // не розуміє попередній синтаксис,
 // fileinclude - для того щоб з маленьких шаблонів зібрати повну сторінку
-gulp.task('default', ['server','babel','sass','fileinclude']);
+gulp.task('default', ['server','import','babel','sass','fileinclude']);
 
 // при виклику команди gulp production
 // будуть стиснуті всі ресурси в папку public
