@@ -1,0 +1,100 @@
+
+=media($width)
+  @media only screen and (max-width: $width+ px)
+    @content
+
+
+@mixin InputMono-Bold($weight,$size)
+  color: #fff
+  font-size: ($size/1280*100)+ vw
+  font-weight: $weight
+  font-family: 'InputMono-Bold'
+  +media(1280)
+    font-size: $size+px
+
+
+@mixin InputMono-Regular($weight,$size)
+  color: #fff
+  font-size: ($size/1280*100)+ vw
+  font-weight: $weight
+  font-family: 'InputMono-Regular'
+
+
+@mixin col($col)
+  width: (100%/12*$col)
+
+.col-1
+  @include col(1)
+
+.col-2
+  @include col(2)
+
+.col-3
+  @include col(3)
+
+.col-4
+  @include col(4)
+
+.col-5
+  @include col(5)
+
+.col-6
+  @include col(6)
+
+.col-7
+  @include col(7)
+
+.col-8
+  @include col(8)
+
+.col-9
+  @include col(9)
+
+.col-10
+  @include col(10)
+
+.col-11
+  @include col(11)
+
+.col-12
+  @include col(12)
+
++media(1023)
+  .col-md-12
+    @include col(12)
+
+
+.container
+  max-width: 1230px
+  position: relative
+  +media(1023)
+    display: block
+
+.clearfix::after
+  content: ''
+  clear: both
+  display: table
+  overflow: hidden
+
+textarea
+  outline: none
+  resize: none
+  &:active, &:focus
+    outline: none
+    resize: none
+
+button
+  outline: none
+  border: none
+  &:active, &:focus
+    outline: none
+    border: none
+
+\:active,:hover,:focus
+  outline: none
+  outline-offset: 0
+
+select
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
