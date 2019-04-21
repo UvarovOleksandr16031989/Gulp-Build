@@ -16,9 +16,10 @@ const gulp = require('gulp'),
     spritesmith = require('gulp.spritesmith'),
     autoprefixer = require('gulp-autoprefixer'),
     fileinclude = require('gulp-file-include'),
-    browserSync = require('browser-sync').create();
-    babel = require('gulp-babel');
-    jsImport = require('gulp-js-import');
+    browserSync = require('browser-sync').create(),
+    babel = require('gulp-babel'),
+    jsImport = require('gulp-js-import'),
+    svgSprite = require('gulp-svg-sprite');
 
 
 // запуск сервера
@@ -151,11 +152,23 @@ gulp.task('sprite', function() {
             }
         })
     );
-
     var imgStream = spriteData.img.pipe(gulp.dest('images/'));
     var cssStream = spriteData.css.pipe(gulp.dest('sass/'));
 
     return merge(imgStream, cssStream);
+});
+//svg spite сделать svg спрайт
+gulp.task('svgSprite', function () {
+    return gulp.src('images/sprite_src/*.svg') // svg files for sprite
+        .pipe(svgSprite({
+                mode: {
+                    stack: {
+                        sprite: "sprite.svg"  //sprite file name
+                    }
+                }
+            }
+        ))
+        .pipe(gulp.dest('images/sprite_src'));
 });
 
 // публікація на gh-pages
