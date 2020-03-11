@@ -1,0 +1,63 @@
+module.exports = {
+"env": {
+"browser": true,
+"es6": true
+},
+"extends": "eslint:recommended",
+"globals": {
+"Atomics": "readonly",
+"SharedArrayBuffer": "readonly"
+},
+"parserOptions": {
+"ecmaFeatures": {
+"jsx": true
+},
+"ecmaVersion": 2018,
+"sourceType": "module"
+},
+"plugins": [
+"react"
+],
+"rules": {
+"flowtype/require-valid-file-annotation": [
+2,
+"always"
+],
+"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+"indent": ["warn", 4, { "SwitchCase": 1}],
+"import/first": 1,
+"arrow-body-style": 1,
+"no-plusplus": [1, { "allowForLoopAfterthoughts": true }],
+"react/jsx-indent": [1,4],
+"react/jsx-indent-props": [1,4],
+"react/no-did-mount-set-state": 0,
+"react/no-unused-state": 1,
+"react/no-unused-prop-types": 0,
+"react/jsx-curly-brace-presence": 1,
+"react/jsx-boolean-value": 1,
+"react/prefer-stateless-function": 1,
+"react/jsx-closing-bracket-location": 1,
+"no-unused-vars": 1,
+"no-use-before-define": 1,
+"no-unreachable": 1,
+"spaced-comment": 1,
+"flowtype/space-after-type-colon": [1],
+"react/prop-types": 0,
+"react/default-props-match-prop-types": 0,
+"newline-after-var": ["warn", "always"],
+"jsx-a11y/anchor-is-valid": [ "error", {
+"components": [ "Link" ],
+"specialLink": ["hrefLeft", "hrefRight", "to"],
+"aspects": [ "noHref", "invalidHref", "preferButton" ]
+}],
+"import/prefer-default-export": 0,
+"prettier/prettier": ["warn", {
+"singleQuote": true,
+"parser": "flow",
+"tabWidth": 4,
+"trailingComma": "all",
+"printWidth": 120
+}],
+"jsx-a11y/media-has-caption": 0
+}
+};
